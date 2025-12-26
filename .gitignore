@@ -1,11 +1,12 @@
 # Rust files
 target/
-Cargo.lock
 **/*.rs.bk
 *.pdb
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo
@@ -18,7 +19,7 @@ Thumbs.db
 # Nix
 result
 result-*
-.direnv/
+.direnv
 
 # Logs
 *.log

@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "tamasfe.even-better-toml",
+    "usernamehw.errorlens",
+    "jnoortheen.nix-ide",
+    "vadimcn.vscode-lldb"
+  ]
+}
