@@ -2,21 +2,21 @@
 
 > Cross-platform hotkey automation in Rust - Learn architecture by building a real-world AutoHotkey replacement
 
-[![Rust](https://img.shields.io/badge/Rust-2021-orange.svg)](https://www.rust-lang.org/)
+[![Rust](https://img.shields.io/badge/Rust-2026-orange.svg)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](LICENSE)
 
-## 🎯 Project Mission
+## Project Mission
 
 HandPlusPlus is a **dual-purpose project**:
 
 1. **Learning Vehicle**: Master software architecture principles (Arc42, domain-driven design, platform abstraction)
 2. **Practical Tool**: Replace AutoHotkey with a native, cross-platform Rust application for gaming automation
 
-**Current Status**: 🚧 **Foundation Phase** - Architecture documented, workspace structure created, ready for implementation
+**Current Status**: **Foundation Phase** - Architecture documented, workspace structure created, ready for implementation
 
 ---
 
-## 🌟 What is HandPlusPlus?
+## What is HandPlusPlus?
 
 A desktop application for automating complex keyboard and mouse input sequences with:
 
@@ -43,7 +43,7 @@ Hotkey::mouse(MouseButton::Button4)
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 **Arc42-First Development**: All architectural decisions are documented **before** implementation.
 
@@ -62,12 +62,11 @@ Hotkey::mouse(MouseButton::Button4)
 - **Configuration-as-Code**: Bindings compiled into binary (v1)
 - **Domain-Driven Design**: Clear bounded contexts per crate
 
-📚 **Full documentation**: [docs/arc42/](docs/arc42/)
+**Full documentation**: [docs/arc42/](docs/arc42/)
 
 ---
 
-## 🚀 Quick Start
-
+## Quick Start
 ### Prerequisites
 
 - **NixOS / Linux**: Nix with flakes enabled
@@ -103,7 +102,7 @@ rust-analyzer --version
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 HandPlusPlus/
@@ -125,7 +124,7 @@ HandPlusPlus/
 
 ---
 
-## 🛠️ Development Workflow
+## Development Workflow
 
 ### Build & Test
 
@@ -164,7 +163,7 @@ cargo watch -x run
 
 ---
 
-## 🎓 Learning Objectives
+## Learning Objectives
 
 This project teaches:
 
@@ -199,7 +198,6 @@ This project teaches:
 - [ ] GUI configuration builder
 - [ ] Macro recording
 - [ ] Plugin system
-- [ ] Cloud sync (optional)
 
 ---
 
@@ -218,7 +216,7 @@ This project teaches:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is currently a personal learning project. Contributions are welcome once the foundation is stable (v0.2+).
 
@@ -229,7 +227,7 @@ This is currently a personal learning project. Contributions are welcome once th
 
 ---
 
-## 📝 License
+## License
 
 Licensed under either of:
 
@@ -240,7 +238,7 @@ at your option.
 
 ---
 
-## 🔗 Related Projects
+## Related Projects
 
 - [AutoHotkey](https://www.autohotkey.com/) - Windows automation (inspiration)
 - [rdev](https://github.com/Narsil/rdev) - Cross-platform input capture
@@ -249,12 +247,6 @@ at your option.
 
 ---
 
-## 📬 Contact
 
-**Project Maintainer**: [Your Name]
-
-For questions about architecture decisions, see [Arc42 Chapter 4 (Solution Strategy)](docs/arc42/04-solution-strategy.md).
-
----
-
-**🚧 Status**: Architecture complete, implementation in progress. See [Roadmap](#-roadmap) for current phase.
+## Status
+ Architecture complete, implementation in progress. See [Roadmap](#-roadmap) for current phase.

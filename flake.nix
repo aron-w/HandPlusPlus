@@ -18,9 +18,10 @@
           inherit system overlays;
         };
         
-        # Rust toolchain with components
+        # Rust toolchain with Windows target
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
           extensions = [ "rust-src" "rust-analyzer" "clippy" ];
+          targets = [ "x86_64-pc-windows-gnu" ]; # Add Windows target
         };
 
         # Platform-specific dependencies
@@ -57,6 +58,10 @@
             cargo-outdated
             cargo-audit
             
+            # Windows cross-compilation
+            pkgsCross.mingwW64.stdenv.cc
+            pkgsCross.mingwW64.windows.pthreads
+            
             # Platform dependencies
           ] ++ platformDeps ++ [
             # Development tools
@@ -79,12 +84,14 @@
             echo "Rust:         $(rustc --version)"
             echo "Cargo:        $(cargo --version)"
             echo "Platform:     ${system}"
+            echo "Targets:      x86_64-unknown-linux-gnu, x86_64-pc-windows-gnu"
             echo ""
             echo "Available commands:"
-            echo "  cargo build          - Build the project"
-            echo "  cargo test           - Run tests"
-            echo "  cargo watch -x run   - Auto-rebuild on changes"
-            echo "  cargo clippy         - Run linter"
+            echo "  cargo build                               - Build for Linux"
+            echo "  cargo build --target x86_64-pc-windows-gnu - Build for Windows"
+            echo "  cargo test                                - Run tests"
+            echo "  cargo watch -x run                        - Auto-rebuild on changes"
+            echo "  cargo clippy                              - Run linter"
             echo ""
             echo "📚 Documentation: docs/arc42/"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
