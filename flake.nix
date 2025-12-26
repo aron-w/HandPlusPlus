@@ -25,14 +25,14 @@
           inherit system overlays;
         };
 
-        # Rust toolchain with Windows target
+        # Rust toolchain with rust-src for rust-analyzer
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
           extensions = [
             "rust-src"
             "rust-analyzer"
             "clippy"
           ];
-          targets = [ "x86_64-pc-windows-gnu" ]; # Add Windows target
+          targets = [ "x86_64-pc-windows-gnu" ];
         };
 
         # Platform-specific dependencies
@@ -90,30 +90,27 @@
               mdbook
             ];
 
-          # Environment variables
-          RUST_SRC_PATH = "${rustToolchain}/lib/rustlib/src/rust/library";
-
           # For X11 development
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath platformDeps;
 
           shellHook = ''
-            
-                        echo "🔧 HandPlusPlus Development Environment"
-                        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                        echo "Rust:         $(rustc --version)"
-                        echo "Cargo:        $(cargo --version)"
-                        echo "Platform:     ${system}"
-                        echo "Targets:      x86_64-unknown-linux-gnu, x86_64-pc-windows-gnu"
-                        echo ""
-                        echo "Available commands:"
-                        echo "  cargo build                               - Build for Linux"
-                        echo "  cargo build --target x86_64-pc-windows-gnu - Build for Windows"
-                        echo "  cargo test                                - Run tests"
-                        echo "  cargo watch -x run                        - Auto-rebuild on changes"
-                        echo "  cargo clippy                              - Run linter"
-                        echo ""
-                        echo "📚 Documentation: docs/arc42/"
-                        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            echo "HandPlusPlus Development Environment"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "Rust:         $(rustc --version)"
+            echo "Cargo:        $(cargo --version)"
+            echo "Platform:     ${system}"
+            echo "Targets:      x86_64-unknown-linux-gnu, x86_64-pc-windows-gnu"
+            echo ""
+            echo "Available commands:"
+            echo "  cargo build                               - Build for Linux"
+            echo "  cargo build --target x86_64-pc-windows-gnu - Build for Windows"
+            echo "  cargo test                                - Run tests"
+            echo "  cargo watch -x run                        - Auto-rebuild on changes"
+            echo "  cargo clippy                              - Run linter"
+            echo ""
+            echo "Documentation: docs/arc42/"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           '';
         };
       }
