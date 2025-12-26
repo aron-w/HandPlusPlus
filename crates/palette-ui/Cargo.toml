@@ -1,0 +1,10 @@
+[package]
+name = "palette-ui"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+
+# UI framework TBD (egui, iced, or native)
+# For now, just a stub

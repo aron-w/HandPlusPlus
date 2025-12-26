@@ -1,0 +1,23 @@
+[package]
+name = "handplusplus"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+
+# Internal crates
+input-capture = { path = "../input-capture" }
+action-executor = { path = "../action-executor" }
+binding-engine = { path = "../binding-engine" }
+palette-ui = { path = "../palette-ui" }
+config = { path = "../config" }
+
+[[bin]]
+name = "handplusplus"
+path = "src/main.rs"

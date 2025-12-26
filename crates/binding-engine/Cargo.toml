@@ -1,0 +1,13 @@
+[package]
+name = "binding-engine"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+input-capture = { path = "../input-capture" }
+action-executor = { path = "../action-executor" }
