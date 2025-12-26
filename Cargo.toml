@@ -33,15 +33,12 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
-# Platform-specific
-[target.'cfg(windows)'.dependencies]
+# Platform-specific (used by individual crates)
 windows = { version = "0.62", features = [
     "Win32_Foundation",
     "Win32_UI_Input_KeyboardAndMouse",
     "Win32_UI_WindowsAndMessaging",
 ] }
-
-[target.'cfg(target_os = "linux")'.dependencies]
 x11rb = { version = "0.13", features = ["all-extensions"] }
 
 [profile.dev]
