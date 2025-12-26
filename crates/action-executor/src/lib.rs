@@ -1,5 +1,7 @@
 use anyhow::Result;
 use std::time::Duration;
+use std::pin::Pin;
+use std::future::Future;
 
 // Re-export types from input-capture for convenience
 pub use input_capture::{Key, MouseButton};
@@ -62,45 +64,50 @@ pub enum Action {
 
 impl Action {
     /// Execute this action using the provided executor
-    pub async fn execute(&self, executor: &impl ActionExecutor) -> Result<()> {
-        match self {
-            Action::PressKey(key) => {
-                executor.simulate_key(*key, InputState::Press)?;
-                executor.simulate_key(*key, InputState::Release)?;
-            }
-            Action::Click(button) => {
-                executor.simulate_mouse(*button, InputState::Press)?;
-                executor.simulate_mouse(*button, InputState::Release)?;
-            }
-            Action::HoldKey(key) => {
-                executor.simulate_key(*key, InputState::Press)?;
-            }
-            Action::ReleaseKey(key) => {
-                executor.simulate_key(*key, InputState::Release)?;
-            }
-            Action::Sequence(actions) => {
-                for action in actions {
-                    action.execute(executor).await?;
+    pub fn execute<'a>(
+        &'a self,
+        executor: &'a impl ActionExecutor,
+    ) -> Pin<Box<dyn Future<Output = Result<()>> + 'a>> {
+        Box::pin(async move {
+            match self {
+                Action::PressKey(key) => {
+                    executor.simulate_key(*key, InputState::Press)?;
+                    executor.simulate_key(*key, InputState::Release)?;
+                }
+                Action::Click(button) => {
+                    executor.simulate_mouse(*button, InputState::Press)?;
+                    executor.simulate_mouse(*button, InputState::Release)?;
+                }
+                Action::HoldKey(key) => {
+                    executor.simulate_key(*key, InputState::Press)?;
+                }
+                Action::ReleaseKey(key) => {
+                    executor.simulate_key(*key, InputState::Release)?;
+                }
+                Action::Sequence(actions) => {
+                    for action in actions {
+                        action.execute(executor).await?;
+                    }
+                }
+                Action::Delay(duration) => {
+                    tokio::time::sleep(*duration).await;
+                }
+                Action::RandomDelay { min, max } => {
+                    use rand::Rng;
+                    let delay = rand::thread_rng().gen_range(min.as_millis()..=max.as_millis());
+                    tokio::time::sleep(Duration::from_millis(delay as u64)).await;
+                }
+                Action::RepeatWhileHeld { .. } => {
+                    // This requires state tracking from binding-engine
+                    todo!("RepeatWhileHeld requires integration with event loop")
+                }
+                Action::TypeText(_text) => {
+                    // TODO: Map characters to key sequences
+                    todo!("TypeText requires character-to-key mapping")
                 }
             }
-            Action::Delay(duration) => {
-                tokio::time::sleep(*duration).await;
-            }
-            Action::RandomDelay { min, max } => {
-                use rand::Rng;
-                let delay = rand::thread_rng().gen_range(min.as_millis()..=max.as_millis());
-                tokio::time::sleep(Duration::from_millis(delay as u64)).await;
-            }
-            Action::RepeatWhileHeld { .. } => {
-                // This requires state tracking from binding-engine
-                todo!("RepeatWhileHeld requires integration with event loop")
-            }
-            Action::TypeText(text) => {
-                // TODO: Map characters to key sequences
-                todo!("TypeText requires character-to-key mapping")
-            }
-        }
-        Ok(())
+            Ok(())
+        })
     }
 }
 

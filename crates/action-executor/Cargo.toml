@@ -8,6 +8,8 @@ tokio = { workspace = true }
 anyhow = { workspace = true }
 thiserror = { workspace = true }
 tracing = { workspace = true }
+rand = { workspace = true }
+input-capture = { path = "../input-capture" }
 
 [target.'cfg(windows)'.dependencies]
 windows = { workspace = true }
