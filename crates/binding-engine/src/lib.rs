@@ -1,7 +1,7 @@
-use std::collections::HashMap;
-use input_capture::{Hotkey, InputEvent};
 use action_executor::Action;
 use anyhow::Result;
+use input_capture::{Hotkey, InputEvent};
+use std::collections::HashMap;
 
 /// Registry mapping hotkeys to actions
 pub struct BindingRegistry {

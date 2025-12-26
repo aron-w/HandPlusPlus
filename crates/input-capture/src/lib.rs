@@ -1,5 +1,5 @@
-use tokio_stream::Stream;
 use anyhow::Result;
+use tokio_stream::Stream;
 
 /// Platform-independent input event
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -15,20 +15,71 @@ pub enum InputEvent {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Key {
     // Letters
-    A, B, C, D, E, F, G, H, I, J, K, L, M,
-    N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
-    
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I,
+    J,
+    K,
+    L,
+    M,
+    N,
+    O,
+    P,
+    Q,
+    R,
+    S,
+    T,
+    U,
+    V,
+    W,
+    X,
+    Y,
+    Z,
+
     // Numbers
-    Num0, Num1, Num2, Num3, Num4, Num5, Num6, Num7, Num8, Num9,
-    
+    Num0,
+    Num1,
+    Num2,
+    Num3,
+    Num4,
+    Num5,
+    Num6,
+    Num7,
+    Num8,
+    Num9,
+
     // Modifiers
-    Ctrl, Shift, Alt, Meta, // Meta = Win/Super
-    
+    Ctrl,
+    Shift,
+    Alt,
+    Meta, // Meta = Win/Super
+
     // Function keys
-    F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
-    
+    F1,
+    F2,
+    F3,
+    F4,
+    F5,
+    F6,
+    F7,
+    F8,
+    F9,
+    F10,
+    F11,
+    F12,
+
     // Special
-    Enter, Escape, Space, Tab, Backspace,
+    Enter,
+    Escape,
+    Space,
+    Tab,
+    Backspace,
 }
 
 /// Mouse buttons

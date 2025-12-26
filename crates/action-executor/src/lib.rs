@@ -1,7 +1,7 @@
 use anyhow::Result;
-use std::time::Duration;
-use std::pin::Pin;
 use std::future::Future;
+use std::pin::Pin;
+use std::time::Duration;
 
 // Re-export types from input-capture for convenience
 pub use input_capture::{Key, MouseButton};

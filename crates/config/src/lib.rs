@@ -1,19 +1,16 @@
 // Configuration module: Define bindings here
 // This is the "configuration-as-code" pattern
 
-use binding_engine::BindingRegistry;
-use input_capture::{Hotkey, Key, MouseButton, Modifier, Trigger};
 use action_executor::Action;
+use binding_engine::BindingRegistry;
+use input_capture::{Hotkey, Key, Modifier, MouseButton, Trigger};
 use std::time::Duration;
 
 /// Register all user-defined bindings
 pub fn register_all_bindings() -> BindingRegistry {
     BindingRegistry::new()
         // Example: F1 → Press Enter
-        .bind(
-            Hotkey::key(Key::F1),
-            Action::PressKey(Key::Enter),
-        )
+        .bind(Hotkey::key(Key::F1), Action::PressKey(Key::Enter))
         // Example: Mouse4 → Right click
         .bind(
             Hotkey::mouse(MouseButton::Button4),
@@ -21,10 +18,7 @@ pub fn register_all_bindings() -> BindingRegistry {
         )
         // Example: Ctrl+Shift+P → Show palette (future)
         .bind(
-            Hotkey::combo(
-                &[Modifier::Ctrl, Modifier::Shift],
-                Trigger::Key(Key::P),
-            ),
+            Hotkey::combo(&[Modifier::Ctrl, Modifier::Shift], Trigger::Key(Key::P)),
             Action::Sequence(vec![
                 // Placeholder for palette action
                 Action::Delay(Duration::from_millis(100)),

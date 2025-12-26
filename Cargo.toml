@@ -44,9 +44,9 @@ windows = { version = "0.62", features = [
 ] }
 x11rb = { version = "0.13", features = ["all-extensions"] }
 
-[profile.dev]
+[profile.dev] 
 opt-level = 0
-debug = true
+debug = true 
 
 [profile.release]
 opt-level = 3
